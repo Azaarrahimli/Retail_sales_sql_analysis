@@ -45,7 +45,8 @@ In the original dataset, date and financial columns were stored as VARCHAR. I cr
 - The Consumer segment generates the highest sales and total profit; however, it operates with lower margins compared to other segments, making it more sensitive to discount levels.
 - Customers were grouped into 0–6, 6–12, and 12–18 month intervals based on their order activity. This segmentation supports targeted campaign strategies for active and less active customers.
 - An RFM analysis was conducted for the most recent year, identifying high-value, at-risk, and inactive customer segments.
-
+- AOV
+  
 ---
 
 ### Average Order Value (AOV)
