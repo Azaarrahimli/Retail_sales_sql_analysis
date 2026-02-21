@@ -1,6 +1,6 @@
 -- Corrected VARCHAR data types (sales, discount, profit, order_date, ship_date) from the raw dataset to appropriate NUMBER and DATE types to ensure accurate calculations and analysis.
 
-sql
+
 CREATE TABLE retail_sales (
     row_id        NUMBER(38,0),
     order_id      VARCHAR2(50),
