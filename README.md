@@ -58,7 +58,7 @@ In the original dataset, date and financial columns were stored as VARCHAR. I cr
 |Central|501,239.89|1,175|426.59|
 |South|391,721.91|822|476.55|
 
-> Higher AOV in the **West** indicates customers purchase more premium or bulk items.
+> Higher AOV in the **East** indicates customers purchase more premium or bulk items.
 
 ```sql
 SELECT 
