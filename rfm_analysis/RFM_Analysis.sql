@@ -24,8 +24,8 @@ RFM AS(
       customer_id,
       max_date - MAX(order_date) AS recency,    	  
       COUNT(DISTINCT(order_id))  AS frequency,   
-   	SUM(sales)                 AS monetary    
-	FROM RETAIL_SALES r   
+   	  SUM(sales)                 AS monetary    
+   FROM RETAIL_SALES r   
    CROSS JOIN max_date m   
    GROUP BY r.customer_id, m.max_date    
 ),
@@ -40,7 +40,7 @@ RFM_score AS(
       monetary,
       NTILE(5) OVER(ORDER BY recency DESC)    AS r_score,   
       NTILE(5) OVER(ORDER BY frequency)       AS f_score,   
-   	NTILE(5) over(ORDER BY monetary)    	 	AS m_score    
+      NTILE(5) over(ORDER BY monetary)    	  AS m_score    
 	FROM RFM   
 )
   
@@ -51,7 +51,7 @@ RFM_score AS(
 recency_range AS(   
    SELECT 
          r_score,   
-   	   MIN(recency)     AS rmin,   
+   	     MIN(recency)     AS rmin,   
          MAX(recency)     AS rmax   
    FROM rfm_score   
    GROUP BY r_score   
@@ -61,17 +61,17 @@ recency_range AS(
   
   frequency_range AS(
   SELECT
-         f_score,   
-   	   MIN(frequency)   AS fmin,   
+        f_score,   
+   	    MIN(frequency)   AS fmin,   
    		MAX(frequency)   AS fmax   
    FROM rfm_score   
-	GROUP BY f_score   
+   GROUP BY f_score   
 ),
   monetary_range as(   
   SELECT       
         m_score,   
-        MIN(monetary) 	 	AS 	mmin,     
-        max(monetary)     AS mmax
+        MIN(monetary) 	AS 	mmin,     
+        max(monetary)   AS mmax
   FROM rfm_score   
   GROUP BY m_score   
 )   
@@ -100,7 +100,7 @@ avg_rfm_concat AS(
         recency,
         frequency,   
         monetary,   
-   	  r_score ||'-'|| f_score ||'-'|| m_score      AS R_F_M,     
+   	    r_score ||'-'|| f_score ||'-'|| m_score      AS R_F_M,     
         ROUND((r_score + f_score + m_score) / 3, 2)  AS AVG_rfm   
    	FROM rfm_score   
 )   
@@ -119,10 +119,10 @@ value_seg AS(
       R_F_M,   
       AVG_rfm,   
    	   CASE   
-   	   	WHEN m_score in(1,2) THEN 'low'   
-            WHEN m_score = 3     THEN 'mid'   
-   	   	WHEN m_score in(4,5) THEN 'high'   
-      	END AS value_segment   
+   	    	WHEN m_score in(1,2) THEN 'low'   
+       		WHEN m_score = 3     THEN 'mid'   
+   	    	WHEN m_score in(4,5) THEN 'high'   
+       END AS value_segment   
    FROM avg_rfm_concat   
 ) 
   
@@ -139,7 +139,7 @@ customer_seg  AS(
         value_segment,   
    	    CASE   
   	   	   	WHEN r_score >=4 AND f_score >=4 AND m_score >=4 THEN 'VIP'   
-   	   	   WHEN f_score >=3 AND m_score <4 THEN 'Regular'   
+   			WHEN f_score >=3 AND m_score <4 THEN 'Regular'   
    	   		WHEN r_score <=3 AND r_score>1 THEN 'Dormat'   
    	      	WHEN r_score =1 THEN 'Churned'   
    		   	WHEN r_score >=4 AND f_score <=4 THEN 'New Customer'   
@@ -162,22 +162,22 @@ WITH max_date_table AS (
 ),    
 RFM AS(   
    	SELECT       
-            customer_id,   
+        customer_id,   
    	   	max_date - MAX(order_date) AS recency,    	  
-            COUNT(DISTINCT(order_id)) AS frequency,   
+        COUNT(DISTINCT(order_id)) AS frequency,   
    	   	SUM(sales) AS monetary    
    	FROM RETAIL_SALES r   
    	CROSS JOIN max_date_table m   
-      GROUP BY r.customer_id, m.max_date    
+    GROUP BY r.customer_id, m.max_date    
 ),   
 RFM_score AS(   
    	SELECT
          customer_id,    	  
          recency,     
          frequency,   
-   	   monetary,   
-   		NTILE(5) OVER(ORDER BY recency DESC)    AS r_score,   
-      	NTILE(5) OVER(ORDER BY frequency)      	AS f_score,   
+   	     monetary,   
+   		 NTILE(5) OVER(ORDER BY recency DESC)    AS r_score,   
+    	 NTILE(5) OVER(ORDER BY frequency)      	AS f_score,   
          NTILE(5) over(ORDER BY monetary)   	   	AS m_score    
    	FROM RFM   
 ), 
@@ -185,12 +185,12 @@ RFM_score AS(
    	SELECT
          customer_id,   
          recency,   
-   	   frequency,
+   	     frequency,
          monetary,
          r_score,   
-   	   f_score,
+   	     f_score,
          m_score,   
-   		r_score ||'-'|| f_score ||'-'|| m_score     AS R_F_M,     
+   		 r_score ||'-'|| f_score ||'-'|| m_score     AS R_F_M,     
          ROUND((r_score + f_score + m_score) / 3, 2) AS AVG_rfm   
    	FROM rfm_score   
 ),
