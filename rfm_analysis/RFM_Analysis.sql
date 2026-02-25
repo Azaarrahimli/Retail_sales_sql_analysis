@@ -20,28 +20,28 @@ WITH max_date_table AS (
 --Now starting the RFM calculation   
 
 RFM AS(   
-   	SELECT         	
+   SELECT         	
       customer_id,
       max_date - MAX(order_date) AS recency,    	  
       COUNT(DISTINCT(order_id))  AS frequency,   
-   		SUM(sales)                 AS monetary    
-   	FROM RETAIL_SALES r   
-   	CROSS JOIN max_date m   
-GROUP BY r.customer_id, m.max_date    
+   	SUM(sales)                 AS monetary    
+	FROM RETAIL_SALES r   
+   CROSS JOIN max_date m   
+   GROUP BY r.customer_id, m.max_date    
 ),
   
 --Assign scores from 1 to 5 for RFM  
   
 RFM_score AS(   
-   	SELECT       
+   SELECT       
       customer_id,
       recency,
       frequency,
       monetary,
       NTILE(5) OVER(ORDER BY recency DESC)    AS r_score,   
-   	  NTILE(5) OVER(ORDER BY frequency)       AS f_score,   
-   		NTILE(5) over(ORDER BY monetary)    	 	AS m_score    
-   	FROM RFM   
+      NTILE(5) OVER(ORDER BY frequency)       AS f_score,   
+   	NTILE(5) over(ORDER BY monetary)    	 	AS m_score    
+	FROM RFM   
 )
   
 --Validate score ranges.  
@@ -49,23 +49,23 @@ RFM_score AS(
 --We will return to the main RFM flow afterward and continue the CTE pipeline.   
   
 recency_range AS(   
-   	SELECT 
-        r_score,   
-   	   	MIN(recency)     AS rmin,   
-   	   	MAX(recency)     AS rmax   
-   	FROM rfm_score   
-   	GROUP BY r_score   
+   SELECT 
+         r_score,   
+   	   MIN(recency)     AS rmin,   
+         MAX(recency)     AS rmax   
+   FROM rfm_score   
+   GROUP BY r_score   
 ),   
   
 --The range should be calculated separately for Recency, Frequency, and Monetary 
   
   frequency_range AS(
   SELECT
-        f_score,   
-   	   	MIN(frequency)   AS fmin,   
-   	   	MAX(frequency)   AS fmax   
-   	FROM rfm_score   
-   	GROUP BY f_score   
+         f_score,   
+   	   MIN(frequency)   AS fmin,   
+   		MAX(frequency)   AS fmax   
+   FROM rfm_score   
+	GROUP BY f_score   
 ),
   monetary_range as(   
   SELECT       
@@ -99,8 +99,8 @@ avg_rfm_concat AS(
         customer_id,    	  
         recency,
         frequency,   
-   	   	monetary,   
-   	   	r_score ||'-'|| f_score ||'-'|| m_score      AS R_F_M,     
+        monetary,   
+   	  r_score ||'-'|| f_score ||'-'|| m_score      AS R_F_M,     
         ROUND((r_score + f_score + m_score) / 3, 2)  AS AVG_rfm   
    	FROM rfm_score   
 )   
@@ -117,13 +117,13 @@ value_seg AS(
       frequency,
       monetary,
       R_F_M,   
-   	  AVG_rfm,   
-   	  CASE   
+      AVG_rfm,   
+   	   CASE   
    	   	WHEN m_score in(1,2) THEN 'low'   
-        WHEN m_score = 3     THEN 'mid'   
+            WHEN m_score = 3     THEN 'mid'   
    	   	WHEN m_score in(4,5) THEN 'high'   
-     	END AS value_segment   
-   	FROM avg_rfm_concat   
+      	END AS value_segment   
+   FROM avg_rfm_concat   
 ) 
   
 --Segment customers based on their value    
@@ -139,11 +139,11 @@ customer_seg  AS(
         value_segment,   
    	    CASE   
   	   	   	WHEN r_score >=4 AND f_score >=4 AND m_score >=4 THEN 'VIP'   
-   	   	   	WHEN f_score >=3 AND m_score <4 THEN 'Regular'   
-   	   	   	WHEN r_score <=3 AND r_score>1 THEN 'Dormat'   
-   	   	   	WHEN r_score =1 THEN 'Churned'   
-   	   	   	WHEN r_score >=4 AND f_score <=4 THEN 'New Customer'   
-   	   	END AS cust_seg   
+   	   	   WHEN f_score >=3 AND m_score <4 THEN 'Regular'   
+   	   		WHEN r_score <=3 AND r_score>1 THEN 'Dormat'   
+   	      	WHEN r_score =1 THEN 'Churned'   
+   		   	WHEN r_score >=4 AND f_score <=4 THEN 'New Customer'   
+   	    END AS cust_seg   
    	FROM value_seg   
 )   
    
@@ -162,36 +162,36 @@ WITH max_date_table AS (
 ),    
 RFM AS(   
    	SELECT       
-customer_id,   
+            customer_id,   
    	   	max_date - MAX(order_date) AS recency,    	  
-         COUNT(DISTINCT(order_id)) AS frequency,   
+            COUNT(DISTINCT(order_id)) AS frequency,   
    	   	SUM(sales) AS monetary    
    	FROM RETAIL_SALES r   
    	CROSS JOIN max_date_table m   
-GROUP BY r.customer_id, m.max_date    
+      GROUP BY r.customer_id, m.max_date    
 ),   
 RFM_score AS(   
    	SELECT
-        customer_id,    	  
-        recency,     
-        frequency,   
-   	   	monetary,   
-   	   	NTILE(5) OVER(ORDER BY recency DESC)    AS r_score,   
-   	   	NTILE(5) OVER(ORDER BY frequency)      	AS f_score,   
-   	   	NTILE(5) over(ORDER BY monetary)   	   	AS m_score    
+         customer_id,    	  
+         recency,     
+         frequency,   
+   	   monetary,   
+   		NTILE(5) OVER(ORDER BY recency DESC)    AS r_score,   
+      	NTILE(5) OVER(ORDER BY frequency)      	AS f_score,   
+         NTILE(5) over(ORDER BY monetary)   	   	AS m_score    
    	FROM RFM   
 ), 
   avg_rfm_concat  AS(   
    	SELECT
-        customer_id,   
-        recency,   
-   	   	frequency,
-        monetary,
-        r_score,   
-   	    f_score,
-        m_score,   
-   	   	r_score ||'-'|| f_score ||'-'|| m_score     AS R_F_M,     
-        ROUND((r_score + f_score + m_score) / 3, 2) AS AVG_rfm   
+         customer_id,   
+         recency,   
+   	   frequency,
+         monetary,
+         r_score,   
+   	   f_score,
+         m_score,   
+   		r_score ||'-'|| f_score ||'-'|| m_score     AS R_F_M,     
+         ROUND((r_score + f_score + m_score) / 3, 2) AS AVG_rfm   
    	FROM rfm_score   
 ),
   value_seg  AS(   
@@ -234,18 +234,19 @@ SELECT * FROM customer_seg
    
 --VIEW successfully created      
 
-  SELECT * FROM RFM_ANALYSIS   
+SELECT * FROM RFM_ANALYSIS   
    
 --Check the number of customers in each value segment     
 
-  SELECT    
+SELECT    
    	VALUE_SEGMENT ,   
    	COUNT(CUSTOMER_ID) AS cust_count    
-FROM RFM_ANALYSIS    GROUP BY VALUE_SEGMENT    
+FROM RFM_ANALYSIS    
+GROUP BY VALUE_SEGMENT    
    
 --Identify which segment has the highest customer share and which generates the highest total revenue    
 
-  SELECT   
+SELECT   
   	CUST_SEG,  
   	COUNT(CUSTOMER_ID) AS cust_count,  
   	ROUND(SUM(MONETARY)) AS sum_monetary   
@@ -255,7 +256,8 @@ ORDER BY sum_monetary DESC
   
 --Calculate the percentage share of each segment within the total customer base  
 
-  SELECT     cust_seg,  
+SELECT
+    cust_seg,  
     COUNT(*) AS cust_count,  
     ROUND(COUNT(*) * 100 / SUM(COUNT(*)) OVER()) AS percentage_segments  
 FROM RFM_ANALYSIS  
