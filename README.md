@@ -36,16 +36,13 @@ In the original dataset, date and financial columns were stored as VARCHAR. I cr
 ---
 
 ## Findings
-- Sales, customer count, and the number of serviced cities (268 → 350) increased over the years. However, despite higher sales, profit margins declined. Discounts above 30% frequently resulted in negative profit, indicating significant risk in the discount strategy.
-- Sales peak consistently in November and December, while January and February show the lowest performance.
-- The 1st and 5th days of the week generate the highest sales, while the 3rd day records the lowest sales performance.
-- West demonstrates the strongest overall performance, while South shows the weakest results. Central maintains moderate sales but lower profit due to frequent high discount applications.
-- High discount rates were applied more intensively in the Central region. In Office Supplies, an 80% discount was applied 300 times, significantly reducing margins in both this category and Furniture.
-- Analysis of three low-performing products shows that discounts between 40%–70% led to negative profit. The same products generated positive profit when sold with lower or no discounts, indicating that the issue lies in excessive discounting rather than the products themselves.
-- The Consumer segment generates the highest sales and total profit; however, it operates with lower margins compared to other segments, making it more sensitive to discount levels.
-- Customers were grouped into 0–6, 6–12, and 12–18 month intervals based on their order activity. This segmentation supports targeted campaign strategies for active and less active customers.
-- An RFM analysis was conducted for the most recent year, identifying high-value, at-risk, and inactive customer segments.
-- AOV
+
+- Sales, customer count, and serviced cities increased over time; however, profit margins declined due to aggressive discounting. Discounts above 30% frequently led to negative profit.
+- Sales peak in November–December and drop in January–February. The 1st and 5th weekdays generate the highest sales.
+- West shows the strongest performance, while South performs weakest. Central applies high discounts, reducing profitability.
+- Heavy discounting (40–80%) caused negative profit for several products, while lower discounts maintained positive margins.
+- The Consumer segment drives the highest sales but operates with lower margins, making it more sensitive to discount levels.
+- Customers were segmented by activity intervals and RFM analysis was applied to identify high-value and at-risk customers.
   
 ---
 
