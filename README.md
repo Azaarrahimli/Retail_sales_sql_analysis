@@ -1,4 +1,4 @@
-# Retail_sales_sql_analysis
+# Retail Sales SQL Analysis
 
 ---
 
@@ -7,7 +7,7 @@ The objective of this project is to analyze profit performance based on retail s
 
 ---
 
-## Dataset Source/ Information
+## Dataset Source / Information
 The dataset used in this project was obtained from Kaggle and contains retail sales data. It includes information about customers, orders, products, and sales performance. The dataset consists of 9,994 rows and 21 columns.
 [Dataset Link](https://www.kaggle.com/datasets/abiodunonadeji/united-state-superstore-sales?utm_source=chatgpt.com)
 
