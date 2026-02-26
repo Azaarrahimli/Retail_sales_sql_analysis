@@ -1,1 +1,1 @@
-[RFM Dashboard](RFM DASHBOARD 1.PNG)
+[RFM Dashboard](RFM_DASHBOARD.PNG)
