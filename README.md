@@ -20,7 +20,7 @@ In the original dataset, date and financial columns were stored as VARCHAR. I cr
 ---
 ## Data Analysis & Findings
 
-### Yearly Sales Trend Analysis
+1. ### Yearly Sales Trend Analysis
 
 |YEARS|AVG DISCOUNT|PROFIT MARGIN|TOTAL QUANTITY|TOTAL SALES|TOTAL PROFIT|SALES YOY|PROFIT YOY|
 |-----|----------------|-----------------|--------------|-----------|------------|-------------|--------------|
@@ -59,7 +59,7 @@ ORDER BY years
 ```
 ---
 
-### Average Order Value (AOV)
+2. ### Average Order Value (AOV)
 
 |Regions|Total Revenue|Orders|AOV|
 |-------|-------------|------|---|
