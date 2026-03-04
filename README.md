@@ -45,6 +45,44 @@ In the original dataset, date and financial columns were stored as VARCHAR. I cr
 - Customers were segmented by activity intervals and RFM analysis was applied to identify high-value and at-risk customers.
   
 ---
+### Yearly Sales Trend Analysis
+
+|YEARS|AVG DISCOUNT|PROFIT MARGIN|TOTAL QUANTITY|TOTAL SALES|TOTAL PROFIT|SALES YOY|PROFIT YOY|
+|-----|----------------|-----------------|--------------|-----------|------------|-------------|--------------|
+ |2014|          15.82%|           10.24%|          757,9|     483,966|       495,56|         NULL|          NULL|
+ |2015|          15.56%|            13.1%|          797,9|     470,533|       616,19|       -2.78%|        24.34%|
+ |2016|          15.47%|           13.43%|          983,7|     609,206|       817,95|       29.47%|        32.74%|
+ |2017|          15.65%|           12.74%|         124,76|     733,215|       934,39|       20.36%|        14.24%|
+
+> This table presents yearly trends in sales, profit, quantity, discount rate, and profit margin, along with year-over-year changes in sales and profit.
+
+```sql
+WITH yearly_trend AS(
+SELECT 
+	EXTRACT(YEAR FROM Order_date) years,
+	round(avg(discount)*100,2) avg_discount_pct,
+	round(sum(profit) / NULLIF(sum(sales),0) *100,2) profit_margin_pct,
+	sum(quantity) total_quantity,
+	round(sum(sales)) total_sales,
+	round(sum(profit)) total_profit
+FROM RETAIL_SALES 
+GROUP BY EXTRACT(YEAR FROM Order_date)
+)
+SELECT 
+	years,
+	avg_discount_pct,
+	profit_margin_pct,
+	total_quantity,
+	total_sales,
+	total_profit,
+	ROUND((total_sales - LAG(total_sales) OVER(ORDER BY years)) 
+	/ lag(total_sales) over(ORDER BY years) * 100, 2) AS sales_yoy_pct,
+	ROUND((total_profit - LAG(total_profit) OVER(ORDER BY years)) 
+	/ LAG(total_profit) OVER(ORDER BY years) * 100, 2) AS profit_yoy_pct
+FROM yearly_trend
+ORDER BY years
+```
+---
 
 ### Average Order Value (AOV)
 
