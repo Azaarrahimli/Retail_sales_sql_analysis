@@ -18,6 +18,8 @@ The dataset used in this project was obtained from Kaggle. The dataset consists 
 In the original dataset, date and financial columns were stored as VARCHAR. I created a new retail_sales table and converted these columns to DATE and NUMBER types. The data was inserted into the new table, and NULL and duplicate checks were performed
 
 ---
+## Data Analysis & Findings
+
 ### Yearly Sales Trend Analysis
 
 |YEARS|AVG DISCOUNT|PROFIT MARGIN|TOTAL QUANTITY|TOTAL SALES|TOTAL PROFIT|SALES YOY|PROFIT YOY|
