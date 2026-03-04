@@ -1,5 +1,11 @@
 ---------------- Data Exploration
 SELECT * FROM RETAIL_SALES;
+
+SELECT * FROM retail_sales
+WHERE quantity <= 0
+OR sales < 0
+OR profit IS NULL;
+
 SELECT COUNT(*) FROM retail_sales;
 SELECT COUNT(DISTINCT customer_id) FROM retail_sales;
 SELECT DISTINCT region FROM retail_sales;
