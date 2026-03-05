@@ -24,10 +24,10 @@ In the original dataset, date and financial columns were stored as VARCHAR. I cr
 
 |YEARS|AVG DISCOUNT|PROFIT MARGIN|TOTAL QUANTITY|TOTAL SALES|TOTAL PROFIT|SALES YOY|PROFIT YOY|
 |-----|----------------|-----------------|--------------|-----------|------------|-------------|--------------|
- |2014|          15.82%|           10.24%|          757,9|     483,966|       495,56|         NULL|          NULL|
- |2015|          15.56%|            13.1%|          797,9|     470,533|       616,19|       -2.78%|        24.34%|
- |2016|          15.47%|           13.43%|          983,7|     609,206|       817,95|       29.47%|        32.74%|
- |2017|          15.65%|           12.74%|         124,76|     733,215|       934,39|       20.36%|        14.24%|
+ |2014|          15.82%|           10.24%|          757,9|     483,966|       49,556|         NULL|          NULL|
+ |2015|          15.56%|            13.1%|          797,9|     470,533|       61,619|       -2.78%|        24.34%|
+ |2016|          15.47%|           13.43%|          983,7|     609,206|       81,795|       29.47%|        32.74%|
+ |2017|          15.65%|           12.74%|         124,76|     733,215|       93,439|       20.36%|        14.24%|
 
 > This table presents yearly trends in sales, profit, quantity, discount rate, and profit margin, along with year-over-year changes in sales and profit.
 
