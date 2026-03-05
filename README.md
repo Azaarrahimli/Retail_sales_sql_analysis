@@ -154,6 +154,60 @@ FETCH FIRST	10 ROWS ONLY
 ```
 ---
 
+6. ### Categories ranked by total sales
+
+|CATEGORY       |TOTAL QUANTITY|TOTAL SALES|TOTAL PROFIT|
+|---------------|--------------|-----------|------------|
+|Technology     |         6,939|    836,154|     145,455|
+|Furniture      |         8,026|    741,718|      18,463|
+|Office Supplies|        22,906|    719,047|     122,491|
+
+```sql
+SELECT 
+	category,
+	sum(quantity) total_quantity,
+	ROUND(SUM(sales)) total_sales,
+	ROUND(SUM(profit)) total_profit
+FROM retail_sales
+GROUP BY category
+ORDER BY total_sales DESC 
+```
+
+---
+7. ### Sub categories ranked by total sales
+
+|SUB CATEGORY|TOTAL QUANTITY|TOTAL SALES|TOTAL PROFIT|
+|------------|--------------|-----------|------------|
+|Phones      |         3,289|    330,007|      44,516|
+|Chairs      |         2,354|    328,168|      26,602|
+|Storage     |         3,158|    223,844|      21,279|
+|Tables      |         1,241|    206,966|     -17,725|
+|Binders     |         5,974|    203,413|      30,222|
+|Machines    |           440|    189,239|       3,385|
+|Accessories |         2,976|    167,380|      41,937|
+|Copiers     |           234|    149,528|      55,618|
+|Bookcases   |           868|    114,880|      -3,473|
+|Appliances  |         1,729|    107,532|      18,138|
+|Furnishings |         3,563|     91,705|      13,059|
+|Paper       |         5,178|     78,479|      34,054|
+|Supplies    |           647|     46,674|      -1,189|
+|Art         |         3,000|     27,119|       6,528|
+|Envelopes   |           906|     16,476|       6,964|
+|Labels      |         1,400|     12,486|       5,546|
+|Fasteners   |           914|      3,024|         950|
+
+```sql
+SELECT 
+	SUB_CATEGORY,
+	sum(quantity) total_quantity,
+	ROUND(SUM(sales)) total_sales,
+	ROUND(SUM(profit)) total_profit
+FROM retail_sales
+GROUP BY SUB_CATEGORY
+ORDER BY total_sales DESC 
+```
+---
+
 ## Questions
 1.  What are the top 10 most ordered products?
 2. Which categories contribute the most to total sales?
