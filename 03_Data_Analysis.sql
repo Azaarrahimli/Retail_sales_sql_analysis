@@ -99,5 +99,25 @@ FROM retail_sales
 GROUP BY sub_category
 ORDER BY total_sales DESC 
 
--- 
+-- Monthly sales analysis
+
+SELECT 
+	EXTRACT(MONTH FROM order_date) month_,
+	SUM(quantity)  total_quantity,
+	ROUND(SUM(sales)) total_sales,
+	ROUND(SUM(profit)) total_profit
+FROM RETAIL_SALES 
+GROUP BY EXTRACT(MONTH FROM order_date)
+ORDER by month_ 
+
+--
+
+
+
+
+
+
+
+
+
 
