@@ -139,6 +139,8 @@ GROUP BY region;
 |9|San Diego    |           670|     47,521|       6,377|
 |10|Springfield |           649|     43,054|       6,201|
 
+> **New York City** has the highest sales and profit, while some cities show negative profit.
+
 ```sql
 SELECT 
 	CITY ,
