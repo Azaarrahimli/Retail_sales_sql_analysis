@@ -174,27 +174,20 @@ ORDER BY total_sales DESC
 ```
 
 ---
-7. ### Sub categories ranked by total sales
+7. ### Top 10 sub categories by total sales
 
-|SUB CATEGORY|TOTAL QUANTITY|TOTAL SALES|TOTAL PROFIT|
-|------------|--------------|-----------|------------|
-|Phones      |         3,289|    330,007|      44,516|
-|Chairs      |         2,354|    328,168|      26,602|
-|Storage     |         3,158|    223,844|      21,279|
-|Tables      |         1,241|    206,966|     -17,725|
-|Binders     |         5,974|    203,413|      30,222|
-|Machines    |           440|    189,239|       3,385|
-|Accessories |         2,976|    167,380|      41,937|
-|Copiers     |           234|    149,528|      55,618|
-|Bookcases   |           868|    114,880|      -3,473|
-|Appliances  |         1,729|    107,532|      18,138|
-|Furnishings |         3,563|     91,705|      13,059|
-|Paper       |         5,178|     78,479|      34,054|
-|Supplies    |           647|     46,674|      -1,189|
-|Art         |         3,000|     27,119|       6,528|
-|Envelopes   |           906|     16,476|       6,964|
-|Labels      |         1,400|     12,486|       5,546|
-|Fasteners   |           914|      3,024|         950|
+| |SUB CATEGORY|TOTAL QUANTITY|TOTAL SALES|TOTAL PROFIT|
+|-|------------|--------------|-----------|------------|
+|1|Phones      |         3,289|    330,007|      44,516|
+|2|Chairs      |         2,354|    328,168|      26,602|
+|3|Storage     |         3,158|    223,844|      21,279|
+|4|Tables      |         1,241|    206,966|     -17,725|
+|5|Binders     |         5,974|    203,413|      30,222|
+|6|Machines    |           440|    189,239|       3,385|
+|7|Accessories |         2,976|    167,380|      41,937|
+|8|Copiers     |           234|    149,528|      55,618|
+|9|Bookcases   |           868|    114,880|      -3,473|
+|10|Appliances |         1,729|    107,532|      18,138|
 
 ```sql
 SELECT 
@@ -205,6 +198,7 @@ SELECT
 FROM retail_sales
 GROUP BY SUB_CATEGORY
 ORDER BY total_sales DESC 
+FETCH FIRST 10 ROWS ONLY 
 ```
 ---
 
