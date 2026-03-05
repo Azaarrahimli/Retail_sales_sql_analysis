@@ -44,7 +44,17 @@ SELECT
 FROM yearly_trend
 ORDER BY years;
 
+-- One of the reasons for the increase in sales over the years is the expansion of the business operations
 
+SELECT	
+	EXTRACT(YEAR FROM order_date) years,
+	COUNT(DISTINCT(city)) branchs,
+	COUNT(customer_id) customers
+FROM RETAIL_SALES 
+GROUP BY EXTRACT(YEAR FROM order_date)
+ORDER BY years
+
+--
 
 
 
