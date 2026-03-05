@@ -236,24 +236,24 @@ FETCH FIRST 10 ROWS ONLY
 ---
 
 ## Questions
-1.  What are the top 10 most ordered products?
-2. Which categories contribute the most to total sales?
-3. How do sales trends change across years, months, and weekdays?
-4. Which region shows the highest and lowest sales performance?
-5. How are sales and profit distributed across customer segments?
-6. Which sub-categories generate the lowest profit?
-7. How do discounts impact sales and profit?
-8. Are there products operating at negative margin?
+1. Which region generates the highest sales and profit?
+2. Which cities generate the highest sales? (Top 10)
+3. Which product categories generate the highest sales and profit?
+4. Which sub-categories generate the highest sales? (Top 10)
+5. How do discounts affect profitability?
+6. Are there sales with negative profit and what may cause them?
+7. How do sales and profit change throughout the year? (monthly trend)
 
 ---
 
 ## Findings
 
-- Sales, customer count, and serviced cities increased over time; however, profit margins declined due to aggressive discounting. Discounts above 30% frequently led to negative profit.
-- Sales peak in November–December and drop in January–February. The 1st and 5th weekdays generate the highest sales.
-- West shows the strongest performance, while South performs weakest. Central applies high discounts, reducing profitability.
-- Heavy discounting (40–80%) caused negative profit for several products, while lower discounts maintained positive margins.
-- The Consumer segment drives the highest sales but operates with lower margins, making it more sensitive to discount levels.
+- Sales increased over time as the number of customers and serviced cities expanded.
+- Sales peak in November and December, while January and February show the lowest performance.
+- The West region generates the highest sales and profit, while the South region shows the weakest performance.
+- New York City leads in both sales and profit, although some cities show negative profit despite high sales.
+- Some products generate negative profit due to high discount levels.
+- Lower discount rates generally maintain positive profit margins.
 - Customers were segmented by activity intervals and RFM analysis was applied to identify high-value and at-risk customers.
   
 ---
