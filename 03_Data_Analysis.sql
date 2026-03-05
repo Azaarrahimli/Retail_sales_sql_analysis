@@ -110,8 +110,29 @@ FROM RETAIL_SALES
 GROUP BY EXTRACT(MONTH FROM order_date)
 ORDER by month_ 
 
---
+-- Discount Level Analysis
 
+SELECT
+    CASE 
+        WHEN discount = 0 THEN '0%'
+        WHEN discount <= 0.2 THEN '0–20%'
+        WHEN discount <= 0.4 THEN '20–40%'
+        WHEN discount <= 0.6 THEN '40–60%'
+        ELSE '60%+'
+    END AS discount_range,
+    COUNT(*) AS sales_count,
+    ROUND(SUM(profit)) AS total_profit
+FROM retail_sales
+WHERE profit < 0
+GROUP BY
+    CASE 
+        WHEN discount = 0 THEN '0%'
+        WHEN discount <= 0.2 THEN '0–20%'
+        WHEN discount <= 0.4 THEN '20–40%'
+        WHEN discount <= 0.6 THEN '40–60%'
+        ELSE '60%+'
+    END
+ORDER BY discount_range;
 
 
 
