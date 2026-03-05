@@ -54,8 +54,18 @@ FROM RETAIL_SALES
 GROUP BY EXTRACT(YEAR FROM order_date)
 ORDER BY years
 
---
+-- Find the top-performing region based on total sales
 
+SELECT 
+	REGION ,
+	SUM(QUANTITY) total_quantity ,
+	ROUND(SUM(sales)) total_sales,
+	ROUND(SUM(PROFIT)) total_profit
+FROM RETAIL_SALES 
+GROUP BY REGION 
+ORDER BY total_profit DESC 
+
+--
 
 
 
