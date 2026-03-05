@@ -1,7 +1,5 @@
 # Retail Sales SQL Analysis
 
----
-
 ## Project overview
 The objective of this project is to analyze profit performance based on retail sales data and identify the key factors affecting it. The analysis focuses on sales trends, discount impact, regional performance, and margin risks. The goal is to uncover business inefficiencies and growth opportunities.
 
