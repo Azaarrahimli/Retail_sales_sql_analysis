@@ -57,8 +57,40 @@ SELECT
 FROM yearly_trend
 ORDER BY years
 ```
+
 ---
-2. ### Operational Expansion
+2. ### Monthly sales analysis
+
+|MONTH|TOTAL QUANTITY|TOTAL SALES|TOTAL PROFIT|
+|------|--------------|-----------|------------|
+|     1|          1,475|      94,925|        9,134|
+|     2|          1,067|      59,751|       10,295|
+|     3|          2,564|     205,005|       28,595|
+|     4|          2,445|     137,481|       11,599|
+|     5|          2,791|     155,029|       22,411|
+|     6|          2,680|     152,719|       21,286|
+|     7|          2,705|     147,238|       13,833|
+|     8|          2,784|     159,044|       21,777|
+|     9|          5,062|     307,650|       36,857|
+|    10|          3,104|     200,323|       31,784|
+|    11|          5,775|     352,461|       35,468|
+|    12|          5,419|     325,294|       43,369|
+
+> Sales are lowest in January and February, while **November** shows the highest sales.
+
+```sql
+SELECT 
+	EXTRACT(MONTH FROM order_date) month_,
+	SUM(quantity)  total_quantity,
+	ROUND(SUM(sales)) total_sales,
+	ROUND(SUM(profit)) total_profit
+FROM RETAIL_SALES 
+GROUP BY EXTRACT(MONTH FROM order_date)
+ORDER by month_ 
+```
+
+---
+3. ### Operational Expansion
 
 |YEARS|BRANCHS|CUSTOMERS|
 |-----|-------|---------|
@@ -78,8 +110,9 @@ FROM RETAIL_SALES
 GROUP BY EXTRACT(YEAR FROM order_date)
 ORDER BY years
 ```
+
 ---
-3. ### Top Performing Region by Sales
+4. ### Top Performing Region by Sales
 
 |REGION |TOTAL QUANTITY|TOTAL SALES|TOTAL PROFIT|
 |-------|--------------|-----------|------------|
@@ -102,7 +135,7 @@ ORDER BY total_profit DESC
 ```
 
 ---
-4. ### Average Order Value (AOV)
+5. ### Average Order Value (AOV)
 
 |Regions|Total Revenue|Orders|AOV|
 |-------|-------------|------|---|
@@ -124,7 +157,7 @@ GROUP BY region;
 ```
 
 ---
-5. ### Top 10 cities by total sales
+6. ### Top 10 cities by total sales
 
 | |CITY         |TOTAL QUANTITY|TOTAL SALES|TOTAL PROFIT|
 |-|-------------|--------------|-----------|------------|
@@ -154,7 +187,7 @@ FETCH FIRST	10 ROWS ONLY
 ```
 ---
 
-6. ### Categories ranked by total sales
+7. ### Categories ranked by total sales
 
 |CATEGORY       |TOTAL QUANTITY|TOTAL SALES|TOTAL PROFIT|
 |---------------|--------------|-----------|------------|
@@ -174,7 +207,7 @@ ORDER BY total_sales DESC
 ```
 
 ---
-7. ### Top 10 sub categories by total sales
+8. ### Top 10 sub categories by total sales
 
 | |SUB CATEGORY|TOTAL QUANTITY|TOTAL SALES|TOTAL PROFIT|
 |-|------------|--------------|-----------|------------|
