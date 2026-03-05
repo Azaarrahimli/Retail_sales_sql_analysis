@@ -58,8 +58,28 @@ FROM yearly_trend
 ORDER BY years
 ```
 ---
+2. ### Operational Expansion
 
-2. ### Average Order Value (AOV)
+|YEARS|BRANCHS|CUSTOMERS|
+|-----|-------|---------|
+ |2014|    268|     1,992|
+ |2015|    275|     2,102|
+ |2016|    320|     2,587|
+ |2017|    350|     3,312|
+
+> One of the reasons for the increase in sales over the years is the expansion in the number of serviced **cities**, which also led to an increase in customers.
+
+```sql
+SELECT	
+	EXTRACT(YEAR FROM order_date) years,
+	COUNT(DISTINCT(city)) branchs,
+	COUNT(customer_id) customers
+FROM RETAIL_SALES 
+GROUP BY EXTRACT(YEAR FROM order_date)
+ORDER BY years
+```
+---
+3. ### Average Order Value (AOV)
 
 |Regions|Total Revenue|Orders|AOV|
 |-------|-------------|------|---|
