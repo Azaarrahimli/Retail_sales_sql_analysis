@@ -79,7 +79,30 @@ GROUP BY EXTRACT(YEAR FROM order_date)
 ORDER BY years
 ```
 ---
-3. ### Average Order Value (AOV)
+3. ### Top Performing Region by Sales
+
+|REGION |TOTAL QUANTITY|TOTAL SALES|TOTAL PROFIT|
+|-------|--------------|-----------|------------|
+|West   |        12,266|    725,458|     108,418|
+|East   |        10,616|    678,500|      91,535|
+|South  |         6,209|    391,722|      46,749|
+|Central|         8,780|    501,240|      39,706|
+
+> **West** leads in sales, profit, and quantity.
+
+```sql
+SELECT 
+	REGION ,
+	SUM(QUANTITY) total_quantity ,
+	ROUND(SUM(sales)) total_sales,
+	ROUND(SUM(PROFIT)) total_profit
+FROM RETAIL_SALES 
+GROUP BY REGION 
+ORDER BY total_profit DESC 
+```
+
+---
+4. ### Average Order Value (AOV)
 
 |Regions|Total Revenue|Orders|AOV|
 |-------|-------------|------|---|
@@ -100,6 +123,33 @@ FROM RETAIL_SALES
 GROUP BY region;
 ```
 
+---
+5. ### Top 10 cities by total sales
+
+| |CITY         |TOTAL QUANTITY|TOTAL SALES|TOTAL PROFIT|
+|-|-------------|--------------|-----------|------------|
+|1|New York City|         3,417|    256,368|      62,037|
+|2|Los Angeles  |         2,879|    175,851|      30,441|
+|3|Philadelphia |         1,981|    109,077|     -13,838|
+|4|San Francisco|         1,935|    112,669|      17,507|
+|5|Seattle      |         1,590|    119,541|      29,156|
+|6|Houston      |         1,466|     64,505|     -10,154|
+|7|Chicago      |         1,132|     48,540|      -6,655|
+|8|Columbus     |           834|     38,425|       5,909|
+|9|San Diego    |           670|     47,521|       6,377|
+|10|Springfield |           649|     43,054|       6,201|
+
+```sql
+SELECT 
+	CITY ,
+	SUM(QUANTITY) total_quantity ,
+	ROUND(SUM(sales)) total_sales,
+	ROUND(SUM(PROFIT)) total_profit
+FROM RETAIL_SALES 
+GROUP BY CITY 
+ORDER BY total_quantity DESC 
+FETCH FIRST	10 ROWS ONLY
+```
 ---
 
 ## Questions
