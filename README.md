@@ -235,6 +235,42 @@ FETCH FIRST 10 ROWS ONLY
 ```
 ---
 
+9. ### Discount Level Analysis
+
+|DISCOUNT RANGE|SALES COUNT|TOTAL PROFIT|
+|--------------|-----------|------------|
+|0–20%         |        523|     -17,616|
+|20–40%        |        414|     -38,945|
+|40–60%        |        215|     -28,944|
+|60%+          |        718|     -70,614|
+
+> Number of sales and total profit with negative profit by discount level. Aggressive discounting is one of the main factors contributing to negative profit
+
+```sql
+SELECT
+    CASE 
+        WHEN discount = 0 THEN '0%'
+        WHEN discount <= 0.2 THEN '0–20%'
+        WHEN discount <= 0.4 THEN '20–40%'
+        WHEN discount <= 0.6 THEN '40–60%'
+        ELSE '60%+'
+    END AS discount_range,
+    COUNT(*) AS sales_count,
+    ROUND(SUM(profit)) AS total_profit
+FROM retail_sales
+WHERE profit < 0
+GROUP BY
+    CASE 
+        WHEN discount = 0 THEN '0%'
+        WHEN discount <= 0.2 THEN '0–20%'
+        WHEN discount <= 0.4 THEN '20–40%'
+        WHEN discount <= 0.6 THEN '40–60%'
+        ELSE '60%+'
+    END
+ORDER BY discount_range;
+```
+
+---
 ## Questions
 1. Which region generates the highest sales and profit?
 2. Which cities generate the highest sales? (Top 10)
