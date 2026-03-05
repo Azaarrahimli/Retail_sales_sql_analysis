@@ -77,6 +77,27 @@ GROUP BY CITY
 ORDER BY total_quantity DESC 
 FETCH FIRST	10 ROWS ONLY
 
+-- Categories ranked by total sales
 
+SELECT 
+	category,
+	sum(quantity) total_quantity,
+	ROUND(SUM(sales)) total_sales,
+	ROUND(SUM(profit)) total_profit
+FROM retail_sales
+GROUP BY category
+ORDER BY total_sales DESC 
 
+-- Sub-categories ranked by total sales
+
+SELECT 
+	sub_category,
+	sum(quantity) total_quantity,
+	ROUND(SUM(sales)) total_sales,
+	ROUND(SUM(profit)) total_profit
+FROM retail_sales
+GROUP BY sub_category
+ORDER BY total_sales DESC 
+
+-- 
 
