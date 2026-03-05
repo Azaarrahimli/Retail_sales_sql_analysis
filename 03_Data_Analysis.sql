@@ -65,7 +65,17 @@ FROM RETAIL_SALES
 GROUP BY REGION 
 ORDER BY total_profit DESC 
 
---
+-- Top 10 cities by total sales
+
+SELECT 
+	CITY ,
+	SUM(QUANTITY) total_quantity ,
+	ROUND(SUM(sales)) total_sales,
+	ROUND(SUM(PROFIT)) total_profit
+FROM RETAIL_SALES 
+GROUP BY CITY 
+ORDER BY total_quantity DESC 
+FETCH FIRST	10 ROWS ONLY
 
 
 
