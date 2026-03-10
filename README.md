@@ -269,6 +269,51 @@ ORDER BY discount_range;
 ```
 
 ---
+
+10. ### Find the top 10 best-value products based on the discount percentage
+
+|PRODUCT NAME                                                                |SALES |DISCOUNT|
+|----------------------------------------------------------------------------|------|--------|
+|Holmes Replacement Filter for HEPA Air Cleaner, Very Large Room, HEPA Filter| 68.81|     0.8|
+|3.6 Cubic Foot Counter Height Office Refrigerator                           |294.62|     0.8|
+|Avery Non-Stick Binders                                                     | 6.286|     0.8|
+|GBC Recycled Regency Composition Covers                                     |23.912|     0.8|
+|Belkin F9S820V06 8 Outlet Surge                                             |58.464|     0.8|
+|Avery Premier Heavy-Duty Binder with Round Locking Rings                    | 8.568|     0.8|
+|GBC Standard Plastic Binding Systems Combs                                  |  3.54|     0.8|
+|Kensington 7 Outlet MasterPiece Power Center                                |177.98|     0.8|
+|Holmes Odor Grabber                                                         | 8.652|     0.8|
+|Storex DuraTech Recycled Plastic Frosted Binders                            | 2.544|     0.8|
+
+```sql
+SELECT 	
+	DISTINCT product_name,
+	sales,
+	DISCOUNT
+FROM RETAIL_SALES 
+ORDER BY DISCOUNT DESC 
+FETCH FIRST 10 ROWS ONLY
+```
+---
+
+11. ### Find the average discount percentage of categories
+
+|CATEGORY       |AVG DISCOUNT|
+|---------------|------------|
+|Furniture      |        0.17|
+|Office Supplies|        0.16|
+|Technology     |        0.13|
+
+```sql
+SELECT 
+	category,
+	ROUND(AVG(DISCOUNT),2) AS avg_discount
+FROM RETAIL_SALES 
+GROUP BY category
+ORDER BY avg_discount DESC 
+```
+
+---
 ## Questions
 1. Which region generates the highest sales and profit?
 2. Which cities generate the highest sales? (Top 10)
