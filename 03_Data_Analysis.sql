@@ -134,7 +134,24 @@ GROUP BY
     END
 ORDER BY discount_range;
 
+-- Find the top 10 best-value products based on the discount percentage
 
+SELECT 	
+	DISTINCT product_name,
+	sales,
+	DISCOUNT
+FROM RETAIL_SALES 
+ORDER BY DISCOUNT DESC 
+FETCH FIRST 10 ROWS ONLY 
+
+-- Find the average discount percentage of categories
+
+SELECT 
+	category,
+	ROUND(AVG(DISCOUNT),2) AS avg_discount
+FROM RETAIL_SALES 
+GROUP BY category
+ORDER BY avg_discount DESC 
 
 
 
