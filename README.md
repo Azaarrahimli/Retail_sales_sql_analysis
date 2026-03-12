@@ -317,26 +317,21 @@ ORDER BY avg_discount DESC
 ```
 
 ---
-## Questions
-1. Which region generates the highest sales and profit?
-2. Which cities generate the highest sales? (Top 10)
-3. Which product categories generate the highest sales and profit?
-4. Which sub-categories generate the highest sales? (Top 10)
-5. How do discounts affect profitability?
-6. Are there sales with negative profit and what may cause them?
-7. How do sales and profit change throughout the year? (monthly trend)
-
----
 
 ## Findings
 
-- Sales increased over time as the number of customers and serviced cities expanded.
-- Sales peak in November and December, while January and February show the lowest performance.
-- The West region generates the highest sales and profit, while the South region shows the weakest performance.
-- New York City leads in both sales and profit, although some cities show negative profit despite high sales.
-- Some products generate negative profit due to high discount levels.
-- Lower discount rates generally maintain positive profit margins.
-- Customers were segmented by activity intervals and RFM analysis was applied to identify high-value and at-risk customers.
+**Sales Growth**  
+Sales increased over time as the number of customers and serviced cities expanded.
+
+**Seasonality**  
+Sales peak in November and December, while January and February show the lowest performance.
+
+**Regional Performance**  
+The West region generates the highest sales and profit, while the South region shows the weakest performance.
+
+**Pricing Impact**  
+High discount levels frequently lead to negative profit, indicating potential risks in aggressive discount strategies.
+
   
 ---
 
