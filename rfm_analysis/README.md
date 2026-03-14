@@ -15,12 +15,15 @@ Power BI
 
 ### Dashboard Includes:
 
-Total Sales
+- Key KPIs: Total Customers, Avg Recency, Avg Frequency, Avg Monetary
 
-Total Customers
+- Customer distribution by RFM segments
 
-Customer distribution by segment
+- Sales comparison across customer segments
 
-Revenue distribution by segment
+- Customer behavior analysis (Frequency vs Monetary)
 
+- Detailed customer-level RFM table
+
+- Interactive year and month filters
 
