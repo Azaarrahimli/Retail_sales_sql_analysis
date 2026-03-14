@@ -19,11 +19,8 @@ Total Sales
 
 Total Customers
 
-VIP Customers and VIP %
-
 Customer distribution by segment
 
 Revenue distribution by segment
 
-Filters by Year and Region
 
